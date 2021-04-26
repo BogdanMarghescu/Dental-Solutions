@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Dental Solutions</title>
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/img/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32x32.png">
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Quicksand:400,500,600,700">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu">
+    <link rel="stylesheet" href="assets/fonts/fontawesome-all.min.css">
+    <link rel="stylesheet" href="assets/css/Contact-Form-Clean.css">
+    <link rel="stylesheet" href="assets/css/Features-Boxed.css">
+    <link rel="stylesheet" href="assets/css/gradient-navbar-1.css">
+    <link rel="stylesheet" href="assets/css/gradient-navbar.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.css">
+    <link rel="stylesheet" href="assets/css/Lightbox-Gallery.css">
+    <link rel="stylesheet" href="assets/css/Login-Form-Clean.css">
+    <link rel="stylesheet" href="assets/css/Registration-Form-with-Photo.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="assets/css/Team-Boxed.css">
+    <link rel="stylesheet" href="assets/css/Testimonials.css">
+</head>
+
+<body style="background: #f1f7fc;font-family: Montserrat, sans-serif;">
+    <nav class="navbar navbar-dark navbar-expand-lg sticky-top" id="app-navbar" style="font-family: Quicksand, sans-serif;font-weight: bold;">
+        <div class="container-fluid"><img src="assets/img/Dental%20Solutions.png" style="width: 100px;"><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse align-self-stretch" id="navcol-1" style="font-family: Quicksand, sans-serif;font-weight: 500;">
+                <ul class="navbar-nav me-auto ml-auto">
+                    <li class="nav-item"><a class="nav-link" data-bss-hover-animate="pulse" href="index.html" style="font-size: 20px;">Home</a></li>
+                    <li class="nav-item" data-bss-hover-animate="pulse" style="font-size: 20px;"><a class="nav-link" data-bss-hover-animate="pulse" href="gallery.html" style="font-size: 20px;">Galerie Foto</a></li>
+                    <li class="nav-item" data-bss-hover-animate="pulse" style="font-size: 20px;"><a class="nav-link" data-bss-hover-animate="pulse" href="services.html" style="font-size: 20px;">Servicii</a></li>
+                    <li class="nav-item" data-bss-hover-animate="pulse" style="font-size: 20px;"><a class="nav-link" data-bss-hover-animate="pulse" href="team.html" style="font-size: 20px;">Echipa</a></li>
+                    <li class="nav-item" data-bss-hover-animate="pulse" style="font-size: 20px;"><a class="nav-link" data-bss-hover-animate="pulse" href="contact.html" style="font-size: 20px;">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <section style="background: url(&quot;assets/img/title_galerie.jpg&quot;), #f1f7fc;background-size: auto, auto;height: 445px;">
+        <div class="container mx-auto" style="margin: 0px;margin-right: 0px;margin-left: 0px;padding-right: 0px;padding-left: 0px;">
+            <div>
+                <h1 class="text-white-50" style="font-family: Montserrat, sans-serif;font-weight: bold;font-size: 48px;text-align: center;margin-bottom: 0px;transform: translateY(176px);transform-origin: top;"><strong>Zonă Administrativă</strong><br></h1>
+            </div>
+        </div>
+    </section>
+    <div>
+        <ul class="nav nav-tabs" role="tablist">
+            <li class="nav-item" role="presentation"><a class="nav-link active" role="tab" data-bs-toggle="tab" href="#tab-1" style="font-weight: 550;">Conturi utilizatori</a></li>
+            <li class="nav-item" role="presentation"><a class="nav-link" role="tab" data-bs-toggle="tab" href="#tab-2" style="font-weight: 550;">Servicii</a></li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane active" role="tabpanel" id="tab-1">
+                <div style="margin: 30px;">
+                    <h3 class="text-uppercase text-center" style="margin-top: 30px;margin-bottom: 40px;font-weight: bold;"><strong>Editare conturi utilizatori</strong><br></h3>
+                    <form class="shadow-none form-control" method="post" action="javascript:;" onsubmit="saveUsersAdmin(this)" style="background: rgba(0,0,0,0);border-width: 0px;">
+                        <div class="table-responsive" id="table_users" style="text-align: center;margin-bottom: 40px;">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Adresă Email</th>
+                                        <th>Nume</th>
+                                        <th>Prenume</th>
+                                        <th>Telefon</th>
+                                        <th>Parolă</th>
+                                        <th style="padding: 0px;width: 40px;"><i class="fas fa-trash-alt" style="color: #d81e05;font-size: 30px;"></i></th>
+                                    </tr>
+                                </thead>
+                                <tbody id="table_users_body"></tbody>
+                            </table>
+                        </div>
+                        <div class="mb-3"><button class="btn btn-primary shadow w-100" data-bss-hover-animate="pulse" type="submit" style="background: #00a3dd;border-radius: 30px;font-weight: 500;border-width: 0px;">Salvează lista de utilizatori</button></div>
+                    </form>
+                </div>
+            </div>
+            <div class="tab-pane" role="tabpanel" id="tab-2">
+                <div class="form-container" style="margin: 30px;">
+                    <h3 class="text-uppercase text-center" style="margin-top: 30px;margin-bottom: 40px;font-weight: bold;"><strong>Editare prețuri servicii</strong><br></h3>
+                    <form class="form-control" method="post" action="javascript:;" onsubmit="saveServicesAdmin(this)" style="background: rgba(0,0,0,0);border-width: 0px;">
+                        <div class="table-responsive" id="table_services" style="text-align: center;margin-bottom: 40px;">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Tip Serviciu</th>
+                                        <th>Preț</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="table_services_body"></tbody>
+                            </table>
+                        </div>
+                        <div class="mb-3" style="margin-right: 100px;margin-left: 100px;"><button class="btn btn-primary shadow w-100" data-bss-hover-animate="pulse" type="submit" style="background: #00a3dd;border-radius: 30px;font-weight: 500;border-width: 0px;">Salvează lista de prețuri servicii</button></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="text-center footer text-faded py-5" style="background: repeating-linear-gradient(90deg, #00c3e7, #4048be 100%);">
+        <div class="container">
+            <p class="text-white-50 m-0 small" style="font-size: 16px;">Copyright&nbsp;©&nbsp;BM.software 2021</p>
+        </div>
+    </footer>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/js/bs-init.js"></script>
+    <script src="assets/js/admin-page.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.js"></script>
+    <script src="assets/js/Lightbox-Gallery.js"></script>
+    <script src="assets/js/Pop-Out-Vertical-Nav-w-Footer--Social-Links--1.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,123 @@
+@media (min-width: 992px) {
+  .intro .intro-text {
+    left: 0;
+    width: 60%;
+    margin-top: 8rem;
+    position: absolute;
+  }
+}
+
+@media (min-width: 1200px) {
+  .intro .intro-text {
+    left: 0;
+    width: 45%;
+    margin-top: 11rem;
+    position: absolute;
+  }
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+@media (min-width: 1400px) {
+  .container-fluid-xxl {
+    max-width: 1320px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .container-fluid-xl {
+    max-width: 1140px;
+  }
+}
+
+@media (min-width: 992px) {
+  .container-fluid-lg {
+    max-width: 960px;
+  }
+}
+
+@media (min-width: 768px) {
+  .container-fluid-md {
+    max-width: 720px;
+  }
+}
+
+@media (min-width: 576px) {
+  .container-fluid-sm {
+    max-width: 540px;
+  }
+}
+
+@media (min-width: 992px) {
+  .intro .intro-img {
+    width: 75%;
+    float: right;
+  }
+}
+
+@media (min-width: 992px) {
+  .intro .carousel {
+    float: right;
+  }
+}
+
+.intro {
+  position: relative;
+}
+
+.clearfix::after {
+  display: block;
+  clear: both;
+  content: "";
+}
+
+.page-section {
+  margin-top: 0rem;
+  margin-bottom: 5rem;
+}
+
+.rounded {
+  border-radius: .25rem !important;
+}
+
+.carousel-fluid {
+  max-width: 100%;
+  height: auto;
+}
+
+.carousel, svg {
+  vertical-align: middle;
+}
+
+.bg-faded {
+  background-color: rgba(255,215,0,0.6);
+}
+
+.text-center {
+  text-align: center !important;
+}
+
+.p-5 {
+  padding: 3rem !important;
+}
+
+.stack-top {
+  z-index: 9;
+}
+
+.lista-servicii-links {
+  color: rgb(123,123,123);
+  text-decoration: none;
+}
+
+.lista-servicii-links:hover {
+  color: #00BFFF;
+}
+
+.sticky-wrapper {
+  position: relative;
+  overflow: auto;
+}
+
