@@ -43,10 +43,27 @@ function editUser(form) {
         var new_user_name = document.getElementById("profile_edit_name").value;
         var new_user_surname = document.getElementById("profile_edit_surname").value;
         var new_phone = document.getElementById("profile_edit_phone").value;
+        var json_edit_profile = {
+            ID: sessionStorage["user_id"],
+            email: new_email,
+            nume: new_user_surname,
+            prenume: new_user_name,
+            telefon: new_phone
+        };
+        axios.post('http://localhost:88/edit_user', json_edit_profile)
         sessionStorage.setItem("email", new_email);
         sessionStorage.setItem("name", new_user_name);
         sessionStorage.setItem("surname", new_user_surname);
         sessionStorage.setItem("phone", new_phone);
+        var users_string = sessionStorage.getItem("users");
+        var users = JSON.parse(users_string);
+        var idx = users.findIndex(user => user.ID == sessionStorage["user_id"]);
+        users[idx].email = new_email;
+        users[idx].prenume = new_user_name;
+        users[idx].nume = new_user_surname;
+        users[idx].telefon = new_phone;
+        users_string = JSON.stringify(users);
+        sessionStorage.setItem("users", users_string);
         window.location.replace('profile.html');
         return false;
     }
@@ -71,28 +88,38 @@ function changePassword(form) {
     var old_passwd = document.getElementById("edit_passwd_old").value;
     var new_passwd = document.getElementById("edit_passwd_new").value;
     var confirm_new_passwd = document.getElementById("edit_passwd_repeat").value;
-    if (old_passwd != passwd) {
-        alert("Ați scris greșit parola cea veche!");
-        return false;
-    }
-    else if (new_passwd != confirm_new_passwd) {
-        alert("Parolele nu coincid!");
-        return false;
-    }
-    else if (new_passwd == passwd) {
-        alert("Nu puteți sa setați o parolă folosită anterior!");
-        return false;
-    }
-    else if (confirm("Sigur doriți să schimbați parola pentru contul cu adresa de email " + email + "?")) {
-        sessionStorage.setItem("password", new_passwd);
-        alert("Ați schimbat parola pentru contul cu adresa de email " + email + ".");
-        window.location.replace('profile.html');
-        return false;
-    }
-    else {
-        document.getElementById("edit_passwd_old").value = '';
-        document.getElementById("edit_passwd_new").value = '';
-        document.getElementById("edit_passwd_repeat").value = '';
-        return false;
-    }
+    json_check_change_pass = {
+        current_password: passwd,
+        old_password: old_passwd,
+        new_password: new_passwd,
+        confirm_new_password: confirm_new_passwd
+    };
+    axios.post('http://localhost:88/change_password_check', json_check_change_pass).then(function (response) {
+        if (response.data != "OK") {
+            alert(response.data);
+            return false;
+        } else if (confirm("Sigur doriți să schimbați parola pentru contul cu adresa de email " + email + "?")) {
+            var json_change_pass = {
+                ID: sessionStorage["user_id"],
+                parola: new_passwd
+            };
+            axios.post('http://localhost:88/change_password', json_change_pass).then(function (response) {
+                sessionStorage.setItem("password", response.data);
+                alert("Ați schimbat parola pentru contul cu adresa de email " + email + ".");
+                var users_string = sessionStorage.getItem("users");
+                var users = JSON.parse(users_string);
+                var idx = users.findIndex(user => user.ID == sessionStorage["user_id"]);
+                users[idx].parola = response.data;
+                users_string = JSON.stringify(users);
+                sessionStorage.setItem("users", users_string);
+                window.location.replace('profile.html');
+                return false;
+            });
+        } else {
+            document.getElementById("edit_passwd_old").value = '';
+            document.getElementById("edit_passwd_new").value = '';
+            document.getElementById("edit_passwd_repeat").value = '';
+            return false;
+        }
+    });
 }

@@ -1,3 +1,11 @@
+sessionStorage.removeItem("email");
+sessionStorage.removeItem("name");
+sessionStorage.removeItem("surname");
+sessionStorage.removeItem("password");
+sessionStorage.removeItem("phone");
+sessionStorage.removeItem("programari_new");
+sessionStorage.removeItem("programari_old");  
+
 var users_string = sessionStorage.getItem("users");
 var services_string = sessionStorage.getItem("services");
 var users = JSON.parse(users_string);
@@ -70,7 +78,6 @@ for (var i = 0; i < services.length; i++) {
     pret_input.required = true;
     pret_input.value = services[i].pret;
     td_pret.appendChild(pret_input);
-
     entry.appendChild(td_serviciu);
     entry.appendChild(td_pret);
     document.getElementById("table_services_body").appendChild(entry);
@@ -79,15 +86,24 @@ for (var i = 0; i < services.length; i++) {
 function saveUsersAdmin(form) {
     if (confirm("Sigur salvați schimbările efectuate?")) {
         for (var i = 0; i < users.length; i++) {
-            users[i].email = document.getElementById("table_users_body").rows[i].cells[0].children[0].value;
-            users[i].nume = document.getElementById("table_users_body").rows[i].cells[1].children[0].value;
-            users[i].prenume = document.getElementById("table_users_body").rows[i].cells[2].children[0].value;
-            users[i].telefon = document.getElementById("table_users_body").rows[i].cells[3].children[0].value;
-            users[i].parola = document.getElementById("table_users_body").rows[i].cells[4].children[0].value;
             if (document.getElementById("table_users_body").rows[i].cells[5].children[0].checked) {
+                axios.post('http://localhost:88/admin_users_delete', users[i]);
                 document.getElementById("table_users_body").deleteRow(i);
                 users.splice(i, 1);
                 i--;
+            } else {
+                if (users[i].email != document.getElementById("table_users_body").rows[i].cells[0].children[0].value ||
+                    users[i].nume != document.getElementById("table_users_body").rows[i].cells[1].children[0].value ||
+                    users[i].prenume != document.getElementById("table_users_body").rows[i].cells[2].children[0].value ||
+                    users[i].telefon != document.getElementById("table_users_body").rows[i].cells[3].children[0].value ||
+                    users[i].parola != document.getElementById("table_users_body").rows[i].cells[4].children[0].value) {
+                    users[i].email = document.getElementById("table_users_body").rows[i].cells[0].children[0].value;
+                    users[i].nume = document.getElementById("table_users_body").rows[i].cells[1].children[0].value;
+                    users[i].prenume = document.getElementById("table_users_body").rows[i].cells[2].children[0].value;
+                    users[i].telefon = document.getElementById("table_users_body").rows[i].cells[3].children[0].value;
+                    users[i].parola = document.getElementById("table_users_body").rows[i].cells[4].children[0].value;
+                    axios.post('http://localhost:88/admin_users_edit', users[i]);
+                }
             }
         }
         users_string = JSON.stringify(users);
@@ -111,7 +127,10 @@ function saveUsersAdmin(form) {
 function saveServicesAdmin(form) {
     if (confirm("Sigur salvați prețurile schimbate?")) {
         for (var i = 0; i < services.length; i++) {
-            services[i].pret = document.getElementById("table_services_body").rows[i].cells[1].children[0].value;
+            if (services[i].pret != document.getElementById("table_services_body").rows[i].cells[1].children[0].value) {
+                services[i].pret = document.getElementById("table_services_body").rows[i].cells[1].children[0].value;
+                axios.post('http://localhost:88/admin_services_update', services[i]);
+            }
         }
         services_string = JSON.stringify(services);
         sessionStorage.setItem("services", services_string);

@@ -90,7 +90,7 @@
                         </div>
                     </div>
                     <div class="col" style="padding-left: 10px;">
-                        <div><select class="form-select" id="hour-select" required="">
+                        <div><select class="form-select" id="hour-select" required="" onchange="checkAvailabilityHour()">
                                 <option value="9" selected="">09:00</option>
                                 <option value="10">10:00</option>
                                 <option value="11">11:00</option>
@@ -164,6 +164,7 @@
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="assets/js/bs-init.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="assets/js/dental_solutions.js"></script>
     <script src="assets/js/programare.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.js"></script>

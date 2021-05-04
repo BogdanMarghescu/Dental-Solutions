@@ -10,11 +10,5 @@ document.getElementById('profile_paragraph_surname').textContent = user_surname;
 document.getElementById('profile_paragraph_phone').textContent = phone;
 
 function logout() {
-    sessionStorage.removeItem("email");
-    sessionStorage.removeItem("name");
-    sessionStorage.removeItem("surname");
-    sessionStorage.removeItem("password");
-    sessionStorage.removeItem("phone");
-    sessionStorage.removeItem("programari_new");
-    sessionStorage.removeItem("programari_old");    
+    sessionStorage.clear();
 }

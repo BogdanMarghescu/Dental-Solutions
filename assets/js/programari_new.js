@@ -1,3 +1,17 @@
+function getDateStringDatePicker(date) {
+    var dd = date.getDate();
+    var mm = date.getMonth() + 1;
+    var yyyy = date.getFullYear();
+    if (dd < 10) {
+        dd = '0' + dd
+    }
+    if (mm < 10) {
+        mm = '0' + mm
+    }
+    date = dd + '.' + mm + '.' + yyyy;
+    return date;
+}
+
 var email = sessionStorage.getItem("email");
 var user_name = sessionStorage.getItem("name");
 var user_surname = sessionStorage.getItem("surname");
@@ -8,7 +22,7 @@ var programari_new = JSON.parse(prog_new_string);
 for (var i = 0; i < programari_new.length; i++) {
     var entry = document.createElement("tr");
     var td_data = document.createElement("td");
-    td_data.innerHTML = programari_new[i].data + "\t" + programari_new[i].ora + ":00";
+    td_data.innerHTML = getDateStringDatePicker(new Date(programari_new[i].data)) + "\t" + programari_new[i].ora + ":00";
     var td_serv = document.createElement("td");
     td_serv.innerHTML = programari_new[i].serviciu;
     var td_pret = document.createElement("td");
@@ -29,6 +43,7 @@ function saveProgramari(form) {
     if (confirm("Sigur doriți să anulați programările selectate pentru contul cu adresa de email " + email + "?")) {
         for (var i = 0; i < programari_new.length; i++) {
             if (document.getElementById("table_new_prog_body").rows[i].cells[3].children[0].checked) {
+                axios.post('http://localhost:88/programari_delete', programari_new[i]);
                 document.getElementById("table_new_prog_body").deleteRow(i);
                 programari_new.splice(i, 1);
                 i--;
